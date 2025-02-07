@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://bylg7tdj1b5p0"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player_movement.gd" id="1_0262m"]
+[ext_resource type="Texture2D" uid="uid://qkasalckjx30" path="res://art/Character/Start_1.png" id="2_mpndr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mapt4"]
+size = Vector2(94, 132)
+
+[sub_resource type="GDScript" id="GDScript_o75pt"]
+script/source = "extends CollisionShape2D
+
+func _physics_process(delta):
+	pass
+	
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x3stq"]
+load_path = "res://.godot/imported/playerGrey_up1.png-6bd114d0a6beac91f48e3a7314d44564.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3u44s"]
+load_path = "res://.godot/imported/playerGrey_up2.png-d6aba85f5f2675ebc7045efa7552ee79.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ms2m1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_x3stq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_3u44s")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mpndr")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_ic8tk"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(729, 57)
+script = ExtResource("1_0262m")
+gravityscale = 600.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.5, 11)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_mapt4")
+script = SubResource("GDScript_o75pt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(41, -4.5)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_ms2m1")
+animation = &"Walk"
+script = SubResource("GDScript_ic8tk")

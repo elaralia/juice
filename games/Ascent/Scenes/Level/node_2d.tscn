@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dey7lav0v0jjp"]
+
+[ext_resource type="PackedScene" uid="uid://bylg7tdj1b5p0" path="res://Scenes/Player/player.tscn" id="1_xqkqu"]
+[ext_resource type="Texture2D" uid="uid://cdxuw1pkmln7t" path="res://art/Room/Basic_Floor.png" id="2_3h1vh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0p4d"]
+size = Vector2(15, 9.02857)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e02ea"]
+size = Vector2(12.0857, 6.02857)
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_xqkqu")]
+gravityscale = 2000.0
+jumpvelocity = 10.0
+
+[node name="BasicFloor" type="Sprite2D" parent="."]
+position = Vector2(809, 549)
+scale = Vector2(35, 35)
+texture = ExtResource("2_3h1vh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasicFloor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicFloor/StaticBody2D"]
+position = Vector2(-5.5, 9.51429)
+shape = SubResource("RectangleShape2D_f0p4d")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BasicFloor/StaticBody2D"]
+position = Vector2(8.01429, 11.0143)
+shape = SubResource("RectangleShape2D_e02ea")
